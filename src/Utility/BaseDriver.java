@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -41,7 +42,7 @@ public class BaseDriver {
    public void bitisIslemleri(){
         System.out.println("bitiş işlemleri yapılıyor");
         Tools.Bekle(3);
-        driver.quit();
+       // driver.quit();
     }
     public static void screenShotAl() throws IOException {
         TakesScreenshot ss=(TakesScreenshot) driver; // 1.aşama ekran görüntü alma değişkenini tanımladım
@@ -53,8 +54,9 @@ public class BaseDriver {
         FileUtils.copyFile(hafizadakiHali, new File("ekranGoruntuleri\\"+dt.format(tarihVeSaat)+saat.getSecond()+".png"));
 
     }
-    void loginTest(){
+   void loginTest(){
 
-        driver.get("https://shopdemo.e-junkie.com/");
-    }
+       driver.get("https://shopdemo.e-junkie.com/");
+   }
+
 }
