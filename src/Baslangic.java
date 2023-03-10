@@ -58,7 +58,7 @@ public class Baslangic extends BaseDriver {
 
     }
 
-    @Test
+    @Test(priority = 3)
     void Test3(){
         driver.get("https://shopdemo.e-junkie.com/");
         WebElement ebook = driver.findElement(By.xpath("//*[text()='Ebook']"));
@@ -86,7 +86,7 @@ public class Baslangic extends BaseDriver {
 
 
     }
-    @Test
+    @Test(priority = 4)
     void Test4(){
 
         driver.get("https://shopdemo.e-junkie.com/");
@@ -130,6 +130,34 @@ public class Baslangic extends BaseDriver {
         //Tools.Bekle(5);
         WebElement confrimMessage= driver.findElement(By.xpath("//span[@class='green_text_margin']"));
         Assert.assertTrue(confrimMessage.isDisplayed(),"Başarısız oldu");
+    }
+    @Test(priority = 5)
+    void Test5(){
+        driver.get("https://shopdemo.e-junkie.com/");
+        WebElement contact= driver.findElement(By.xpath("//*[@class='contact']"));
+        contact.click();
+        WebElement name= driver.findElement(By.xpath("//input[@id='sender_name']"));
+        name.sendKeys("Tolunay");
+        WebElement email= driver.findElement(By.xpath("//input[@id='sender_email']"));
+        email.sendKeys("asdasdasda@gmail.com");
+        WebElement subject= driver.findElement(By.xpath("//input[@id='sender_subject']"));
+        subject.sendKeys("Frameleri sevmiyoruz");
+        WebElement message= driver.findElement(By.xpath("//*[@id='sender_message']"));
+        message.sendKeys("Techno Study 5");
+       // WebElement frame5= driver.findElement(By.xpath("//*[@title='reCAPTCHA']"));
+       // driver.switchTo().frame(frame5);
+       // WebElement iamRobot= driver.findElement(By.xpath("//div[@class='recaptcha-checkbox-checkmark']"));
+       // iamRobot.click();
+       // driver.switchTo().defaultContent();
+
+        WebElement messageBtn= driver.findElement(By.xpath("//*[@id='send_message_button']"));
+        messageBtn.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.alertIsPresent());
+        String alert=driver.switchTo().alert().getText();
+        Assert.assertTrue(alert.contains("Recaptcha didn't match"),"Başarısız oldu");
+        driver.switchTo().alert().accept();
+
 
 
 
